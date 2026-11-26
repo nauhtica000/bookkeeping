@@ -1,0 +1,68 @@
+{
+  "name": "mma-books",
+  "productName": "MMA Books",
+  "version": "1.0.0",
+  "description": "Local-first bookkeeping for MMA Milling LLC",
+  "author": "MMA Milling LLC",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test \"test/*.test.js\"",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux AppImage"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.2.0"
+  },
+  "devDependencies": {
+    "electron": "^45.4.1",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.mmamilling.books",
+    "productName": "MMA Books",
+    "copyright": "MMA Milling LLC",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "MMA Books"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.finance"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Office"
+    },
+    "npmRebuild": false
+  }
+}
