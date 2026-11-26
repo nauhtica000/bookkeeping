@@ -120,6 +120,8 @@ export function createBooks({ db, dataDir, clock = () => new Date() }) {
     'owner.deleteReimbursement': (a) => owner.deleteReimbursement(db, a.id, now()),
     'owner.restoreReimbursement': (a) => owner.restoreReimbursement(db, a.id, now()),
 
+    'badges.get': () => ({ reviewCount: sales.reviewCount(db) }),
+
     // --- trash ---
     'trash.list': () => trash.listTrash(db),
     'trash.restore': (a) => trash.restoreFromTrash(db, a.type, a.id, now()),

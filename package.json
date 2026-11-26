@@ -8,6 +8,9 @@
   "private": true,
   "type": "module",
   "main": "src/main/main.js",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "electron .",
     "test": "node --test \"test/*.test.js\"",
@@ -46,6 +49,10 @@
             "x64"
           ]
         }
+      ],
+      "files": [
+        "!node_modules/better-sqlite3/prebuilds/darwin-*",
+        "!node_modules/better-sqlite3/prebuilds/linux*"
       ]
     },
     "nsis": {
@@ -57,12 +64,21 @@
     },
     "mac": {
       "target": "dmg",
-      "category": "public.app-category.finance"
+      "category": "public.app-category.finance",
+      "files": [
+        "!node_modules/better-sqlite3/prebuilds/win32-*",
+        "!node_modules/better-sqlite3/prebuilds/linux*"
+      ]
     },
     "linux": {
       "target": "AppImage",
-      "category": "Office"
+      "category": "Office",
+      "files": [
+        "!node_modules/better-sqlite3/prebuilds/win32-*",
+        "!node_modules/better-sqlite3/prebuilds/darwin-*"
+      ]
     },
-    "npmRebuild": false
+    "npmRebuild": false,
+    "publish": null
   }
 }

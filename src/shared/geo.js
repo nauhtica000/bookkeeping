@@ -71,6 +71,7 @@ export function normalizeNyCounty(input) {
 
 export function jurisdictionLabel(state, county, locality) {
   if (state === OUTSIDE_US) return 'Outside the US';
+  if (!county && !locality) return state ? `${stateName(state)} (${state})` : '(no state)';
   const parts = [];
   if (locality) parts.push(locality);
   if (county) parts.push(state === 'NY' || !/county$/i.test(county) ? `${county} County` : county);
